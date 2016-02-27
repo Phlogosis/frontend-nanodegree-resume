@@ -17,11 +17,16 @@ var work = {
 	"jobs" :
 	[
 		{
-		"employer" : "Boston Bread LLC",
+		"employer" : "Panera Bread",
 		"title" : "Associate Trainer",
 		"location" : "Watertown, MA",
 		"dates" : ["June 2013", "Present"],
 		"description" : "Customer service, food prep, recieving and filling orders"
+		},
+	
+		{
+		"employer" : "Waltham Public Library",
+		"title" : "Page"
 		}
 	]
 }
@@ -37,7 +42,7 @@ var education = {
 		"dates" : ["Sept 2011", "May 2013"],
 		"url" : "http://www.massbay.edu"
 		}
-	]
+	],
 	"onlineCourses" :
 	[
 		{
@@ -62,3 +67,17 @@ var projects = {
 
 var data = "%data%";
 
+if (bio.hasOwnProperty("skills")) {
+	if (bio.skills.length > 0) {
+		$("#header").append(HTMLskillsStart);
+		for (skill in bio.skills) {
+			$("#skills").append(HTMLskills.replace(data, bio.skills[skill]));
+		}
+	}
+}
+
+for (job in work.jobs) {
+	$("#workExperience").append(HTMLworkStart);
+	var jobInQuestion = HTMLworkEmployer.replace(data, work.jobs[job].employer) + HTMLworkTitle.replace(data, work.jobs[job].title);
+	$(".work-entry:last").append(jobInQuestion);
+}
