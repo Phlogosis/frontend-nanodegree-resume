@@ -26,7 +26,10 @@ var work = {
 	
 		{
 		"employer" : "Waltham Public Library",
-		"title" : "Page"
+		"title" : "Page",
+		"location" : "Waltham, MA",
+		"dates" : ["Sept 2010", "Apr 2011"],
+		"description" : "Recieving imports, reshelving entire rooms"
 		}
 	]
 }
@@ -60,10 +63,17 @@ var projects = {
 		"dates" : ["Beginning", "End"],
 		"description" : "Something came in the mail today.",
 		"images" : ["images/these.jpg"]
+	},
+	{
+		"title" : "Other Project",
+		"dates" : ["Starting", "Finishing"],
+		"description" : "Would you like a pizza?",
+		"images" : ["images/pizzathis.jpg"]
 	}
 	]
 
 }
+
 
 var data = "%data%";
 
@@ -71,13 +81,52 @@ if (bio.hasOwnProperty("skills")) {
 	if (bio.skills.length > 0) {
 		$("#header").append(HTMLskillsStart);
 		for (skill in bio.skills) {
-			$("#skills").append(HTMLskills.replace(data, bio.skills[skill]));
+			$("#skills").append(HTMLskills.replace(data, 
+						bio.skills[skill]));
 		}
 	}
 }
 
 for (job in work.jobs) {
-	$("#workExperience").append(HTMLworkStart);
-	var jobInQuestion = HTMLworkEmployer.replace(data, work.jobs[job].employer) + HTMLworkTitle.replace(data, work.jobs[job].title);
-	$(".work-entry:last").append(jobInQuestion);
+    $("#workExperience").append(HTMLworkStart);
+    var jobEmployerAndTitle = 
+        HTMLworkEmployer.replace(data, work.jobs[job].employer)
+            + HTMLworkTitle.replace(data, work.jobs[job].title);
+    var jobDates =
+        HTMLworkDates.replace(data,
+			work.jobs[job].dates[0]
+			+ " - "
+			+ work.jobs[job].dates[1]);
+    var jobLocation = 
+        HTMLworkLocation.replace(data, work.jobs[job].location);
+    var jobDescription = 
+	HTMLworkDescription.replace(data, work.jobs[job].description);
+    $(".work-entry:last").append(jobEmployerAndTitle + jobDates 
+		    + jobLocation + jobDescription);
 }
+
+$("#main").append(internationalizeButton);
+
+function inName(firstandlast) {
+	var newname = firstandlast.split(" ");
+        var newnewname = [];
+	newnewname[0] = newname[0].slice(0,1).toUpperCase() 
+	+ newname[0].slice(1).toLowerCase();
+	newnewname[1] = newname[1].toUpperCase();
+
+	return newnewname[0] + " " + newnewname[1];
+}
+
+
+projects.display = function() {
+    //$("#projects").append(HTMLprojectStart);
+    //$(".project-entry:last").append(HTMLprojectTitle.replace(data,projects.projects[0].title));
+    for (proj in projects.projects) {
+	    $("#projects").append(HTMLprojectStart);
+	    var projTitle = HTMLprojectTitle.replace(data,projects.projects[proj].title);
+	    projDates = HTMLprojectDates.replace(data, projects.projects[proj].dates[0] + " - " + projects.projects[proj].dates[1]);
+	    $(".project-entry:last").append(projTitle + projDates);
+    }
+};
+
+projects.display();
