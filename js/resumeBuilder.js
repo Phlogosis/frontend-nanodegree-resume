@@ -124,8 +124,10 @@ projects.display = function() {
     for (proj in projects.projects) {
 	    $("#projects").append(HTMLprojectStart);
 	    var projTitle = HTMLprojectTitle.replace(data,projects.projects[proj].title);
-	    projDates = HTMLprojectDates.replace(data, projects.projects[proj].dates[0] + " - " + projects.projects[proj].dates[1]);
-	    $(".project-entry:last").append(projTitle + projDates);
+	    var projDates = HTMLprojectDates.replace(data, projects.projects[proj].dates[0] + " - " + projects.projects[proj].dates[1]);
+	    var projDescription = HTMLprojectDescription.replace(data, projects.projects[proj].description);
+	    var projImage = HTMLprojectImage.replace(data, projects.projects[proj].image);
+	    $(".project-entry:last").append(projTitle + projDates + projDescription + projImage);
     }
 };
 
