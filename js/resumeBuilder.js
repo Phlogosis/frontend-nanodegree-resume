@@ -11,14 +11,37 @@ var bio = {
         "location" : "Waltham, MA"
     },
     "welcomeMessage" : "a new solution for a new day",
-    "skills" : [
-        "programming", "web development", "customer service"
+    "skills" : [ "programming",  
+        "web development", "customer service"
     ],
     "biopic" : "images/goateeedit.jpg",
     "display" : function() {
         var bioName = HTMLheaderName.replace(data, bio.name);
         var bioRole = HTMLheaderRole.replace(data, bio.role);
-        $("#header").prepend(bioName + bioRole); // It -is- okay to concatenate.
+        var bioWelcomeMessage = HTMLwelcomeMsg.replace(data, bio.welcomeMessage);
+        $("#header").prepend(bioName + bioRole + bioWelcomeMessage);// It -is- okay to concatenate.
+
+        //$("#header").append(); 
+
+        var bioContactsMobile = HTMLmobile.replace(data, bio.contacts.mobile);
+        var bioContactsEmail = HTMLemail.replace(data, bio.contacts.email);
+        var bioContactsGithub = HTMLgithub.replace(data, bio.contacts.github);
+        var bioContactsTwitter = HTMLtwitter.replace(data, bio.contacts.twitter);
+        var bioContactsLocation = HTMLlocation.replace(data, bio.contacts["location"]);
+        var bioContacts = bioContactsMobile + bioContactsEmail + bioContactsGithub + bioContactsTwitter + bioContactsLocation; 
+
+        $("#topContacts").append(bioContacts);
+
+        $("#header").append(HTMLskillsStart);
+
+        bio.skills.forEach(function(currentValue) {
+            $("#skills").append(
+                HTMLskills.replace(data, currentValue)
+            )
+        });
+
+        $("#header").prepend(HTMLbioPic.replace(data, bio.biopic));
+
     }
 }
 
@@ -71,13 +94,13 @@ var projects = {
         "title" : "Project title",
         "dates" : ["Beginning", "End"],
         "description" : "Something came in the mail today.",
-        "images" : ["images/these.jpg"]
+        "images" : ["http://placehold.it/150x150"]
     },
     {
         "title" : "Other Project",
         "dates" : ["Starting", "Finishing"],
         "description" : "Would you like a pizza?",
-        "images" : ["images/pizzathis.jpg"]
+        "images" : ["http://placehold.it/150x150"]
     }
     ]
 
@@ -85,15 +108,6 @@ var projects = {
 
 
 
-if (bio.hasOwnProperty("skills")) {
-    if (bio.skills.length > 0) {
-        $("#header").append(HTMLskillsStart);
-        for (skill in bio.skills) {
-            $("#skills").append(HTMLskills.replace(data,
-                        bio.skills[skill]));
-        }
-    }
-}
 
 for (job in work.jobs) {
     $("#workExperience").append(HTMLworkStart);
@@ -121,7 +135,7 @@ projects.display = function() {
         var projTitle = HTMLprojectTitle.replace(data,projects.projects[proj].title);
         var projDates = HTMLprojectDates.replace(data, projects.projects[proj].dates[0] + " - " + projects.projects[proj].dates[1]);
         var projDescription = HTMLprojectDescription.replace(data, projects.projects[proj].description);
-        var projImage = HTMLprojectImage.replace(data, projects.projects[proj].image);
+        var projImage = HTMLprojectImage.replace(data, projects.projects[proj].images[0]);
         $(".project-entry:last").append(projTitle + projDates + projDescription + projImage);
     }
 };
