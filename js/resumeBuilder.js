@@ -30,6 +30,8 @@ bio.display = function() {
     var bioContacts = bioContactsMobile + bioContactsEmail + bioContactsGithub + bioContactsTwitter + bioContactsLocation;
 
     $("#topContacts").append(bioContacts);
+    $("#footerContacts").append(bioContacts);
+
 
     $("#header").append(HTMLskillsStart);
 
@@ -39,6 +41,7 @@ bio.display = function() {
     });
 
     $("#header").prepend(HTMLbioPic.replace(data, bio.biopic));
+
 
 };
 
@@ -85,7 +88,7 @@ var education = {
     "onlineCourses": [{
         "title": "Front-End Web Development",
         "school": "Udacity",
-        "dates": "Jan 2016 - TBD",
+        "date": "Jan 2016 - TBD",
         "url": "http://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
     }],
 };
@@ -99,7 +102,7 @@ education.display = function() {
         var educationLocation = HTMLschoolLocation.replace(data, currentValue.location);
         var educationMajor = HTMLschoolMajor.replace(data, currentValue.majors[0]);
 
-        var fullSchoolString = educationName + educationDegree + educationDates + educationMajor;
+        var fullSchoolString = educationName + educationDegree + educationDates + educationLocation + educationMajor;
 
         $(".education-entry:last").append(fullSchoolString);
     });
@@ -124,12 +127,12 @@ var projects = {
         "title": "Project title",
         "dates": "Beginning - End",
         "description": "Something came in the mail today.",
-        "images": ["http://placehold.it/150x150"]
+        "images": ["https://placehold.it/150x150"]
     }, {
         "title": "Other Project",
         "dates": "Starting - Finishing",
         "description": "Would you like a pizza?",
-        "images": ["http://placehold.it/150x150"]
+        "images": ["https://placehold.it/150x150"]
     }],
 };
 
