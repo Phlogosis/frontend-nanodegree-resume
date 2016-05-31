@@ -41,7 +41,7 @@ bio.display = function() {
     });
 
     $("#header").prepend(HTMLbioPic.replace(data, bio.biopic));
-
+q
 
 };
 
@@ -113,7 +113,7 @@ education.display = function() {
         $("#education").append(HTMLschoolStart);
         var educationOnlineTitle = HTMLonlineTitle.replace(data, currentValue.title);
         var educationOnlineSchool = HTMLonlineSchool.replace(data, currentValue.school);
-        var educationOnlineDates = HTMLonlineDates.replace(data, currentValue.dates);
+        var educationOnlineDates = HTMLonlineDates.replace(data, currentValue.date);
         var educationOnlineURL = HTMLonlineURL.replace("#", currentValue.url).replace(data, currentValue.url.slice(7, 22));
 
         var onlineClass = educationOnlineTitle + educationOnlineSchool + educationOnlineDates + educationOnlineURL;
