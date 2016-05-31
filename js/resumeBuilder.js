@@ -41,7 +41,7 @@ bio.display = function() {
     });
 
     $("#header").prepend(HTMLbioPic.replace(data, bio.biopic));
-q
+
 
 };
 
